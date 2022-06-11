@@ -7,22 +7,25 @@
         </style>
     </head>
     <body>
+        <canvas id="canvas"></canvas>
         <script>
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext("2d");
             let g;
             let t;
-            let h;
+            let h = 100;
             let v = g*t;
             let s = v*t;
             
-            function getData(data) {
-                this.getG {
-                    g = data;
-                } this.getH {
-                    h = data;
-                } this.getT {
-                    t = data;
+            let rect = {
+                x : 0,
+                y : h,
+                draw(){
+                    ctx.fillStyle = "#B42500";
+                    ctx.fillRect(this.x, this.y, 100, 100);
                 }
             }
+            rect.draw();
             
         </script>
     </body>
