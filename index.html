@@ -6,20 +6,23 @@
         <style></style>
     </head>
     <body>
-        <form>
-            <p>
-                <strong>가속도</strong>
-                <input type='text' name='가속도'>(m/s^2)
-            </p>
-        </form>
+        <p>
+            <strong>가속도</strong>
+            <input type='number' id='get_a'>(m/s^2)
+        </p>
+        <p>
+            <strong>높이</strong>
+            <input type='number' id='get_h'>(m)
+        </p>
+        <br><button onclick="GetData()">실행</button>
         <canvas id='canvas' width='500' height='1000'></canvas>
         
         <script>
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
-            let g = 9.8;
+            let g;
             let t = 0;
-            let h = 500;
+            let h;
             let v = g*t;
             let s = v*t;
             let sec = 60;
@@ -38,8 +41,10 @@
             
             function Play(){
                 requestAnimationFrame(Play);
-                if (rect.y < h) {
+                if (rect.y < h && play === true) {
                     ctx.clearRect(0,0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#80FF00';
+                    ctx.fillRect(100, 60, 300,5);
                     rect.y += v/60;
                     rect.draw();
                     t++
@@ -51,7 +56,13 @@
                 }
             }
             
-            Play();
+            function GetData(){
+                g = document.getElementById('get_a').value;
+                h = document.getElementById('get_h').value;
+                rect.y = 0, t = 0;
+                Play();
+                play = true;
+            }
         </script>
     </body>
 </html>
