@@ -15,7 +15,7 @@
             <input type='number' id='get_h'>(m)
         </p>
         <br><button onclick="GetData()">실행</button>
-        <canvas id='canvas' width='500' height='1000'></canvas>
+        <canvas id='canvas' width='500' height='500'></canvas>
         
         <script>
             const canvas = document.getElementById('canvas');
@@ -42,9 +42,10 @@
             function Play(){
                 requestAnimationFrame(Play);
                 if (rect.y < h && play === true) {
+                    let ground = h+33;
                     ctx.clearRect(0,0, canvas.width, canvas.height);
                     ctx.fillStyle = '#80FF00';
-                    ctx.fillRect(100, 60, 300,5);
+                    ctx.fillRect(100, ground, 200,3);
                     rect.y += v/60;
                     rect.draw();
                     t++
