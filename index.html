@@ -7,26 +7,40 @@
         </style>
     </head>
     <body>
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" width="500" height="1000"></canvas>
         <script>
-            let canvas = document.getElementById("canvas");
-            let ctx = canvas.getContext("2d");
-            let g;
-            let t;
-            let h = 100;
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            let g = 9.8;
+            let t = 0;
+            let h = 500;
             let v = g*t;
             let s = v*t;
+            let sec = 60;
             
             let rect = {
-                x : 0,
-                y : h,
+                x : 200,
+                y : 0,
                 draw(){
                     ctx.fillStyle = "#B42500";
-                    ctx.fillRect(this.x, this.y, 100, 100);
+                    ctx.fillRect(this.x, this.y, 30, 30);
                 }
             }
             rect.draw();
             
+            function Play(){
+                requestAnimationFrame(Play);
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                if (rect.y > h) s = s;
+                rect.y += v/60;
+                rect.draw();
+                t++
+                v = g*t/60;
+                console.log("y : %d, v : %d, t : %d", rect.y, v, t);
+            }
+            
+            
+            Play();
         </script>
     </body>
 </html>
