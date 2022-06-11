@@ -42,10 +42,9 @@
             function Play(){
                 requestAnimationFrame(Play);
                 if (rect.y < h && play === true) {
-                    let ground = h+33;
                     ctx.clearRect(0,0, canvas.width, canvas.height);
                     ctx.fillStyle = '#80FF00';
-                    ctx.fillRect(100, ground, 200, 3);
+                    ctx.fillRect(100, h+30, 200, 3);
                     rect.y += v/60;
                     rect.draw();
                     t++
@@ -59,7 +58,7 @@
             
             function GetData(){
                 g = Number(document.getElementById('get_a').value);
-                h = Number.(document.getElementById('get_h').value);
+                h = Number(document.getElementById('get_h').value);
                 rect.y = 0, t = 0;
                 Play();
                 play = true;
