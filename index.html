@@ -24,7 +24,7 @@
             let t = 0;
             let h;
             let v = g*t;
-            let s = v*t;
+            let s = v*t/2;
             let sec = 60;
             let span
             let play = false;
@@ -49,7 +49,7 @@
                     rect.draw();
                     t++
                     v = g*t/60;
-                    console.log('y : %s, v : %s, t : %s, ground : %s', rect.y, v, t, ground);
+                    console.log('y : %s, v : %s, t : %s', rect.y, v, t);
                 } else {
                     span = t/60;
                     console.log('span : %s',span);
