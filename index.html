@@ -1,28 +1,36 @@
 <!DOCTYPE HTML>
 <html>
-    <head lang = "ko">
+    <head lang = 'ko'>
         <title>자유낙하</title>
-        <meta charset="UTF-8">
-        <style>
-        </style>
+        <meta charset='UTF-8'>
+        <style></style>
     </head>
     <body>
-        <canvas id="canvas" width="500" height="1000"></canvas>
+        <form>
+            <p>
+                <strong></strong>
+                <input type='text' name='가속도'>(m/s
+            </p>
+        </form>
+        <canvas id='canvas' width='500' height='1000'></canvas>
+        
         <script>
-            const canvas = document.getElementById("canvas");
-            const ctx = canvas.getContext("2d");
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
             let g = 9.8;
             let t = 0;
             let h = 500;
             let v = g*t;
             let s = v*t;
             let sec = 60;
+            let span
+            let play = false;
             
             let rect = {
                 x : 200,
                 y : 0,
                 draw(){
-                    ctx.fillStyle = "#B42500";
+                    ctx.fillStyle = '#B42500';
                     ctx.fillRect(this.x, this.y, 30, 30);
                 }
             }
@@ -30,15 +38,18 @@
             
             function Play(){
                 requestAnimationFrame(Play);
-                ctx.clearRect(0,0, canvas.width, canvas.height);
-                if (rect.y > h) s = s;
-                rect.y += v/60;
-                rect.draw();
-                t++
-                v = g*t/60;
-                console.log("y : %d, v : %d, t : %d", rect.y, v, t);
+                if (rect.y < h) {
+                    ctx.clearRect(0,0, canvas.width, canvas.height);
+                    rect.y += v/60;
+                    rect.draw();
+                    t++
+                    v = g*t/60;
+                    console.log('y : %s, v : %s, t : %s', rect.y, v, t);
+                } else {
+                    span = t/60;
+                    console.log('span : %s',span);
+                }
             }
-            
             
             Play();
         </script>
