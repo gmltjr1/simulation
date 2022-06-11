@@ -45,12 +45,12 @@
                     let ground = h+33;
                     ctx.clearRect(0,0, canvas.width, canvas.height);
                     ctx.fillStyle = '#80FF00';
-                    ctx.fillRect(100, ground, 200,3);
+                    ctx.fillRect(100, ground, 200, 3);
                     rect.y += v/60;
                     rect.draw();
                     t++
                     v = g*t/60;
-                    console.log('y : %s, v : %s, t : %s', rect.y, v, t);
+                    console.log('y : %s, v : %s, t : %s, ground : %s', rect.y, v, t, ground);
                 } else {
                     span = t/60;
                     console.log('span : %s',span);
@@ -58,8 +58,8 @@
             }
             
             function GetData(){
-                g = document.getElementById('get_a').value;
-                h = document.getElementById('get_h').value;
+                g = Number(document.getElementById('get_a').value);
+                h = Number.(document.getElementById('get_h').value);
                 rect.y = 0, t = 0;
                 Play();
                 play = true;
