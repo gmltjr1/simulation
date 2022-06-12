@@ -30,7 +30,7 @@
             let v = g*t;
             let s = g*t/2;
             let sec = 60;
-            let span
+            let span;
             let play = false;
             
             let rect = {
@@ -57,9 +57,6 @@
                     t++;
                     v = g*t/60;
                     s = v*t/120;
-                } else {
-                    span = t/60;
-                    console.log('span : %s',span);
                 }
             }
             
