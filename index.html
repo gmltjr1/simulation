@@ -29,7 +29,6 @@
             let h;
             let v = g*t;
             let s = g*t/2;
-            let sec = 60;
             let span;
             let play = false;
             
@@ -57,7 +56,7 @@
                     t++;
                     v = g*t/60;
                     s = v*t/120;
-                }
+                } else play = false;
             }
             
             function GetData(){
