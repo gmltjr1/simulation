@@ -14,17 +14,21 @@
             <strong>높이</strong>
             <input type='number' id='get_h'>(m)
         </p>
+        <p id='time_passed'>0</p>
+        <p id='d'>0</p>
         <br><button onclick="GetData()">실행</button>
         <canvas id='canvas' width='500' height='500'></canvas>
         
         <script>
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
-            let g;
+            const time = document.getElementById('time_passed');
+            const distance = document.getElementById('d');
+            let g = 0;
             let t = 0;
             let h;
             let v = g*t;
-            let s = v*t/2;
+            let s = g*t/2;
             let sec = 60;
             let span
             let play = false;
@@ -37,6 +41,7 @@
                     ctx.fillRect(this.x, this.y, 30, 30);
                 }
             }
+            
             rect.draw();
             
             function Play(){
@@ -45,10 +50,13 @@
                     ctx.clearRect(0,0, canvas.width, canvas.height);
                     ctx.fillStyle = '#80FF00';
                     ctx.fillRect(100, h+30, 200, 3);
-                    rect.y += v/60;
+                    rect.y = s;
                     rect.draw();
-                    t++
+                    time.innerHTML = t/60 + '초';
+                    d.innerHTML = s +'m';
+                    t++;
                     v = g*t/60;
+                    s = v*t/120;
                     console.log('y : %s, v : %s, t : %s', rect.y, v, t);
                 } else {
                     span = t/60;
@@ -59,7 +67,7 @@
             function GetData(){
                 g = Number(document.getElementById('get_a').value);
                 h = Number(document.getElementById('get_h').value);
-                rect.y = 0, t = 0;
+                rect.y = 0, t = 0, s=0, v=0;
                 Play();
                 play = true;
             }
