@@ -53,7 +53,7 @@
                   // 현재 시간을 가져옴
                 let elasped = now - lastTime;
                 
-                if (elasped >= fpsInterval) {
+                if (elasped > fpsInterval) {
                     lastTime = now - (elasped % fpsInterval);
                     
                     if (rect.y <= h && play === true) {
