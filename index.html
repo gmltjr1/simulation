@@ -43,9 +43,20 @@
             
             rect.draw();
             
+            var lastTime = 0; // 최근에 에니메이션을 적용한 시간
+            var fps = 60; // 프레임
+            var fpsInterval = 1000/60;
+
+            
             function Play(){
-                requestAnimationFrame(Play);
-                if (rect.y <= h && play === true) {
+                let now = Date.now(); 
+                  // 현재 시간을 가져옴
+                let elasped = now - lastTime;
+                
+                if (elasped >= fpsInterval) {
+                    lastTime = now - (elasped % fpsInterval);
+                    
+                    if (rect.y <= h && play === true) {
                     ctx.clearRect(0,0, canvas.width, canvas.height);
                     ctx.fillStyle = '#80FF00';
                     ctx.fillRect(100, h+30, 200, 3);
@@ -57,6 +68,8 @@
                     v = g*t/60;
                     s = v*t/120;
                 } else play = false;
+                }
+                requestAnimationFrame(Play);
             }
             
             function GetData(){
